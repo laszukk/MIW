@@ -223,26 +223,26 @@ def podzial(macierz):
 #print(marker(macierz,2))
 print(podzial(macierz))
 
-def m_kowariancji(matrix):
-    return np.dot(matrix.T,matrix)
+def kowa(macierz):
+    return np.dot(macierz.T,macierz)
 
-def odwrotnosc_m(matrix):
-    return np.linalg.inv(matrix)
+def odw(macierz):
+    return np.linalg.inv(macierz)
 
-def lewa_odwrotnosc(matrix):
-    kow = m_kowariancji(matrix)
-    odwrotnosc = odwrotnosc_m(kow)
-    return np.dot(odwrotnosc,matrix.T)
+def lewaodw(macierz):
+    kowariancji = kowa(macierz)
+    odwrotnosc = odw(kow)
+    return np.dot(odwrotnosc,macierz.T)
   
-def regresja_liniowa(matrix):
-    matrix_x=np.array([[1,x[0]]for x in matrix])
-    matrix_y=np.array([x[1]for x in matrix])
-    lewa_odw = lewa_odwrotnosc(matrix_x)
-    return np.dot(lewa_odw,matrix_y)
+def reg(macierz):
+    macx=np.array([[1,x[0]]for x in macierz])
+    macy=np.array([x[1]for x in macierz])
+    lewaodwrotnosc = lewaodw(macx)
+    return np.dot(lewaodwrotnosc,macy)
     
 
-x_y=np.array([[2,1],[5,2],[7,3],[8,3]])
-print(regresja_liniowa(x_y))
+macierzreg=np.array([[2,1,1],[5,2,3],[7,2,3]])
+print(reg(macierzreg))
  
 def projection(u,v):
     uTv = np.dot(u.T,v)
