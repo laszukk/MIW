@@ -2,6 +2,13 @@ import numpy as np
 from numpy.linalg import eigh,norm
 
 def svd(macierz):
+    kopia=macierz
+    kopia=np.transpose(kopia)
+    x,y=kopia.shape
+    if(x>y):
+        macierz=np.dot(macierz,kopia)
+    else:
+        macierz=np.dot(kopia,macierz)
     ev, macierzV =eigh(macierz.T@macierz)
     print("Macierz V:\n" ,macierzV)
     u0= macierz@macierzV[:,0]/norm(macierz@macierzV[:,0])
