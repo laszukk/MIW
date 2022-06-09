@@ -223,26 +223,20 @@ def podzial(macierz):
 #print(marker(macierz,2))
 print(podzial(macierz))
 
-def kowa(macierz):
-    return np.dot(macierz.T,macierz)
-
-def odw(macierz):
-    return np.linalg.inv(macierz)
-
 def lewaodw(macierz):
-    kowariancji = kowa(macierz)
-    odwrotnosc = odw(kow)
-    return np.dot(odwrotnosc,macierz.T)
-  
-def reg(macierz):
-    macx=np.array([[1,x[0]]for x in macierz])
-    macy=np.array([x[1]for x in macierz])
-    lewaodwrotnosc = lewaodw(macx)
-    return np.dot(lewaodwrotnosc,macy)
-    
+    xTx=np.dot(macierz.T,macierz)
+    print(xTx)
+    xTxod=np.linalg.inv(xTx)
+    return np.dot(xTxod,macierz.T)
 
-macierzreg=np.array([[2,1,1],[5,2,3],[7,2,3]])
-print(reg(macierzreg))
+def regresja(macierz):
+    xy=np.array([[1,x[0]]for x in macierz])
+    yy=np.array([x[1]for x in macierz])
+    xTxodwxT=lewaodw(xy)
+    return np.dot(xTxodwxT,yy)
+
+macierz=np.array([[2,1],[5,2]])
+print(regresja(macierz))
  
 def projection(u,v):
     uTv = np.dot(u.T,v)
