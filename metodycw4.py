@@ -164,7 +164,7 @@ macierztmp = [x[:14] for x in macierz]
 # 1/n * [x1 x2 ... xn] iloczyn skalar [1 1 ... 1]
 # wariancja 1/n * [x1 x2 ... xn] iloczyn skalar [1 1 ... 1] -> a [x1-xsrednia x2-srednia ... xn-srednia]
  
- 
+#
 # B0+B1x1=y1
 # B1 kąt nachylenia
 # B0 podnosi (punkt gdzie prosta przecina)
