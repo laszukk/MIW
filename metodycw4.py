@@ -238,36 +238,30 @@ def regresja(macierz):
 macierz=np.array([[2,1],[5,2]])
 print(regresja(macierz))
  
+import numpy as np
+
 def projection(u,v):
     uTv = np.dot(u.T,v)
     uTu = np.dot(u.T,u)
     return (uTv/uTu)*u
 
-def matrix_len(u):
-    return math.sqrt(np.dot(u.T,u))
+def decompositionQr(macierz):
+    tmp=macierz.T
+    v1=np.array([tmp[0][0],tmp[0][1],tmp[0][2]])
+    v2=np.array([tmp[1][0],tmp[1][1],tmp[1][2]])
+    u1=v1
+    u1_norm=np.linalg.norm(v1)
+    e1=u1*(1/u1_norm)
+    proj=projection(u1,v2)
+    u2=v2-proj
+    u2_norm=np.linalg.norm(v2)
+    e2=u2*(1/u2_norm)
+    Qt=np.array([[e1[0],e1[1],e1[2]],[e2[0],e2[1],e2[2]]])
+    R=np.dot(Qt,macierz)
+    print(Qt)
+    return R
 
-a=np.array([[0,1],[0,0],[1,1]])
 
-def qr(a):
-    vlista=[ [ x[i] for x in a ] for i in range(len(a[1])) ]
-    ulista = []
-    q = []
-
-    for x in vlista:
-        x = np.array(x)
-        projsuma = 0
-        for u in ulista:
-            utmp = np.array(utmp)
-            projsuma=projsuma+projection(utmp, x)
-        u = x - projsuma
-        ulista.append(u)
-        e = (1/matrix_len(u))*u
-        q.append(e)
-     
-    q = np.array(q).T
-    r = np.dot(q.T,a)
-
-    return r,q
-        
-print(qr(a))
- 
+macierz=np.array([[1,0],[1,1],[0,1]])
+print(macierz)
+print(decompositionQr(macierz))
